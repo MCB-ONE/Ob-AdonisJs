@@ -1,6 +1,11 @@
 {
   "extends": ["plugin:adonis/typescriptApp", "prettier"],
   "plugins": ["prettier"],
+  "parserOptions": {
+    "project": "tsconfig.json",
+    "tsconfigRootDir": "C:/Users/tonis/Desktop/WEB/OpenBootcamp/AdonisJs/Proyectos/Ob-Proyecto-Adonis",
+    "sourceType": "module"
+  },
   "rules": {
     "prettier/prettier": ["error"]
   }
