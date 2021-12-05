@@ -26,7 +26,7 @@ export default class Experiencia extends BaseModel {
   @belongsTo(() => Candidato, {
     localKey: 'candidatoId',
   })
-  public usuario: BelongsTo<typeof Candidato>;
+  public candidato: BelongsTo<typeof Candidato>;
 
   @belongsTo(() => Skill, {
     localKey: 'skillId',

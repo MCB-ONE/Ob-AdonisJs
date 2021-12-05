@@ -18,5 +18,5 @@ export default class Skill extends BaseModel {
   @hasMany(() => Experiencia, {
     foreignKey: 'skillId',
   })
-  public experiencias: HasMany<typeof Experiencia>;
+  public experiencia: HasMany<typeof Experiencia>;
 }
