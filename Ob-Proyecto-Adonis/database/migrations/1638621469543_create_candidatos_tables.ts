@@ -20,6 +20,7 @@ export default class Candidatos extends BaseSchema {
       /*  - UserId(relación) */
       table
         .integer('usuario_id')
+        .notNullable()
         .unsigned()
         .references('id')
         .inTable('usuarios')

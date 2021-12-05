@@ -12,7 +12,13 @@ export default class Experiencia extends BaseSchema {
         .references('id')
         .inTable('candidatos')
         .onDelete('CASCADE');
-      table.integer('skill_id').unsigned().references('id').inTable('skill').onDelete('CASCADE');
+      table
+        .integer('skill_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('skill')
+        .onDelete('CASCADE');
       /* - Nivel(número - 1(junior), 2(semi - senior), 3(senior)) ***ENUM***/
       table.integer('nivel').unsigned().notNullable().defaultTo(2);
       table.timestamps(true, true);
