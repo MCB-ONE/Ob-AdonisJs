@@ -18,7 +18,12 @@ export default class Candidatos extends BaseSchema {
       table.boolean('movilidad_geografica').notNullable().defaultTo(true);
       table.boolean('activo').notNullable().defaultTo(true);
       /*  - UserId(relación) */
-      table.integer('user_id').unsigned().references('id').inTable('usuarios');
+      table
+        .integer('usuario_id')
+        .unsigned()
+        .references('id')
+        .inTable('usuarios')
+        .onDelete('CASCADE'); /**BORRADO EN CASCADA!! */
       table.timestamps(true, true);
     });
   }
