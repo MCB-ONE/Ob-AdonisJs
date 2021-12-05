@@ -1,11 +1,15 @@
-import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
+import Skill from 'App/Models/Skill';
 
 export default class SkillsController {
   public async index({}: HttpContextContract) {}
 
-  public async create({}: HttpContextContract) {}
+  public async store({ request, response }: HttpContextContract) {
+    const nombre = request.input('nombre');
+    const skill = await Skill.create({ nombre });
 
-  public async store({}: HttpContextContract) {}
+    return response.json({ skill });
+  }
 
   public async show({}: HttpContextContract) {}
 

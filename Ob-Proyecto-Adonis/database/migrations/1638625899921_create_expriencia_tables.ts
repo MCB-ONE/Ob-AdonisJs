@@ -1,7 +1,7 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema';
 
-export default class Experiencia extends BaseSchema {
-  protected tableName = 'experiencia';
+export default class Experiencias extends BaseSchema {
+  protected tableName = 'experiencias';
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
@@ -17,7 +17,7 @@ export default class Experiencia extends BaseSchema {
         .unsigned()
         .notNullable()
         .references('id')
-        .inTable('skill')
+        .inTable('skills')
         .onDelete('CASCADE');
       /* - Nivel(número - 1(junior), 2(semi - senior), 3(senior)) ***ENUM***/
       table.integer('nivel').unsigned().notNullable().defaultTo(2);
