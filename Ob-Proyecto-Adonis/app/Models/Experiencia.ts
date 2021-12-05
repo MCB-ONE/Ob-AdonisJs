@@ -23,13 +23,9 @@ export default class Experiencia extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
 
-  @belongsTo(() => Candidato, {
-    localKey: 'candidatoId',
-  })
+  @belongsTo(() => Candidato)
   public candidato: BelongsTo<typeof Candidato>;
 
-  @belongsTo(() => Skill, {
-    localKey: 'skillId',
-  })
+  @belongsTo(() => Skill)
   public skill: BelongsTo<typeof Skill>;
 }

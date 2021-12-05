@@ -14,9 +14,11 @@ export default class SkillsController {
   public async store({ request, response }: HttpContextContract) {
     const nombre = request.input('nombre');
     /*Sentencia insert usando el metodo de modelos:
-      -> const skill = await Skill.create({ nombre });*/
-    // sentencia insert usando el metodo de base de datos:
-    const skill = await Database.insertQuery<Skill>().table('skills').insert({ nombre });
+      -> const skill = await Skill.create({ nombre });
+     sentencia insert usando el metodo de base de datos:
+    const skill = await Database.insertQuery<Skill>().table('skills').insert({ nombre });*/
+    // usando firstOrCreate: este método busca si existe el registro y si no lo crea
+    const skill = await Skill.firstOrCreate({ nombre }, { nombre });
 
     return response.json({ skill });
   }

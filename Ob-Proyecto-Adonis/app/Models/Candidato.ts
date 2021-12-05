@@ -51,13 +51,9 @@ export default class Candidato extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
 
-  @belongsTo(() => Usuario, {
-    localKey: 'usuarioId',
-  })
+  @belongsTo(() => Usuario)
   public usuario: BelongsTo<typeof Usuario>;
 
-  @hasMany(() => Experiencia, {
-    foreignKey: 'candidatoId',
-  })
+  @hasMany(() => Experiencia)
   public experiencias: HasMany<typeof Experiencia>;
 }

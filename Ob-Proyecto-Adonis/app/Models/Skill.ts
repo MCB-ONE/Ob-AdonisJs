@@ -15,8 +15,6 @@ export default class Skill extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
 
-  @hasMany(() => Experiencia, {
-    foreignKey: 'skillId',
-  })
+  @hasMany(() => Experiencia)
   public experiencia: HasMany<typeof Experiencia>;
 }

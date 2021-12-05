@@ -22,8 +22,7 @@ export default class Candidatos extends BaseSchema {
         .integer('usuario_id')
         .notNullable()
         .unsigned()
-        .references('id')
-        .inTable('usuarios')
+        .references('usuarios.id')
         .onDelete('CASCADE'); /**BORRADO EN CASCADA!! */
       table.timestamps(true, true);
     });

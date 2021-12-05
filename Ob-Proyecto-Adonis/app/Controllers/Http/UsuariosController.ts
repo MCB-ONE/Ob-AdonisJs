@@ -6,10 +6,22 @@ export default class UsuariosController {
     return 'GET Users';
   }
 
-  public async store({}: /*  request, response */ HttpContextContract) {
-    /* const data = request.only(['nombre', 'email', 'password', ])
-    const usuario = new Usuario();
-    usuario.nombre; */
+  public async store({ response }: HttpContextContract) {
+    const user1 = {
+      nombre: 'Usuario1',
+      email: 'prueba1@prueba.com',
+      password: 'usurioPrueba1',
+    };
+
+    const user2 = {
+      nombre: 'Usuario2',
+      email: 'prueba2@prueba.com',
+      password: 'usurioPrueba2',
+    };
+
+    const usuarios = await Usuario.createMany([user1, user2]);
+
+    return response.json({ usuarios });
   }
 
   public async show({ params }: HttpContextContract) {
