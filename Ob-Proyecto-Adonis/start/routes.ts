@@ -24,3 +24,5 @@ import Route from '@ioc:Adonis/Core/Route';
 // Endpoint de prueba para crear usuarios estaticos sin atuh
 Route.get('/testUsuarios', 'UsuariosController.store');
 Route.resource('skills', 'SkillsController').apiOnly();
+Route.resource('candidatos', 'CandidatosController').apiOnly();
+Route.resource('experiencias', 'ExperienciasController').apiOnly();

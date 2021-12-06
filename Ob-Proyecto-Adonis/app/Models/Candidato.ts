@@ -4,6 +4,8 @@ import Usuario from './Usuario';
 import Experiencia from './Experiencia';
 
 export default class Candidato extends BaseModel {
+  public static table = 'candidatos';
+
   @column({ isPrimary: true })
   public id: number;
 
@@ -21,7 +23,7 @@ export default class Candidato extends BaseModel {
   public telefono: string;
 
   @column()
-  public fechaDeNacimiento: Date;
+  public fechaNacimiento: Date;
 
   @column()
   public salarioActual: number;
@@ -44,7 +46,6 @@ export default class Candidato extends BaseModel {
   @column()
   public activo: boolean;
 
-  @column()
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;
 

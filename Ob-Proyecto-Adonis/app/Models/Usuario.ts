@@ -26,7 +26,7 @@ export default class Usuario extends BaseModel {
   public updatedAt: DateTime;
 
   @hasMany(() => Candidato)
-  public candidato: HasMany<typeof Candidato>;
+  public candidatos: HasMany<typeof Candidato>;
 
   @beforeSave()
   public static async hashPassword(user: Usuario) {
