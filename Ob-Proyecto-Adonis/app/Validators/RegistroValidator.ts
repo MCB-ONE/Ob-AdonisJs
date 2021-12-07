@@ -19,7 +19,7 @@ export default class RegistroValidator extends BaseValidator {
     ]),
     password: schema.string({}, [
       rules.minLength(8),
-      rules.regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]$/),
+      rules.regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/),
     ]),
   });
 }

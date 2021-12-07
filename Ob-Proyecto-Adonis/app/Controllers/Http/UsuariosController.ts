@@ -1,5 +1,4 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
-import { schema, rules } from '@ioc:Adonis/Core/Validator';
 import Usuario from 'App/Models/Usuario';
 import RegistroValidator from 'App/Validators/RegistroValidator';
 
@@ -12,7 +11,6 @@ export default class UsuariosController {
     //Validar datos
     const data = await request.validate(RegistroValidator);
     const usuario = await Usuario.create(data);
-
     return response.json({ usuario });
   }
 
