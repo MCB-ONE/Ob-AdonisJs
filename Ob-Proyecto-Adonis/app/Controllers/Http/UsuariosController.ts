@@ -1,27 +1,19 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
+import { schema, rules } from '@ioc:Adonis/Core/Validator';
 import Usuario from 'App/Models/Usuario';
+import RegistroValidator from 'App/Validators/RegistroValidator';
 
 export default class UsuariosController {
   public async index({}: HttpContextContract) {
     return 'GET Users';
   }
 
-  public async store({ response }: HttpContextContract) {
-    const user1 = {
-      nombre: 'Usuario1',
-      email: 'prueba1@prueba.com',
-      password: 'usurioPrueba1',
-    };
+  public async store({ request, response }: HttpContextContract) {
+    //Validar datos
+    const data = await request.validate(RegistroValidator);
+    const usuario = await Usuario.create(data);
 
-    const user2 = {
-      nombre: 'Usuario2',
-      email: 'prueba2@prueba.com',
-      password: 'usurioPrueba2',
-    };
-
-    const usuarios = await Usuario.createMany([user1, user2]);
-
-    return response.json({ usuarios });
+    return response.json({ usuario });
   }
 
   public async show({ params }: HttpContextContract) {
