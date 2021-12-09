@@ -9,17 +9,28 @@ export default class ExperienciasController {
   }
 
   public async store({ request, response }: HttpContextContract) {
+    // TODO VALIDATE DATA
     const data = request.only(['candidatoId', 'skillId', 'nivel']);
-    const experiencia = await Experiencia.create(data);
+    const experiencia = await Experiencia.firstOrCreate(data);
 
     return response.json({ experiencia });
   }
 
-  public async show({}: HttpContextContract) {}
+  public async show({ params, response }: HttpContextContract) {
+    const experiencia = await Experiencia.query().where('id', params.id);
+    return response.json({ experiencia });
+  }
 
-  public async edit({}: HttpContextContract) {}
+  public async update({ params, request, response }: HttpContextContract) {
+    // TODO VALIDATE DATA
+    const data = request.body();
+    const experiencia = await Experiencia.query().where('id', params.id).update(data);
 
-  public async update({}: HttpContextContract) {}
+    return response.json({ experiencia });
+  }
 
-  public async destroy({}: HttpContextContract) {}
+  public async destroy({ params, response }: HttpContextContract) {
+    const experiencia = await Experiencia.query().where('id', params.id).del();
+    return response.json({ experiencia });
+  }
 }

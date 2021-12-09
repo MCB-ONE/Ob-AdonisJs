@@ -21,13 +21,31 @@
 import Route from '@ioc:Adonis/Core/Route';
 
 // Register users
-Route.post('registro', 'UsuariosController.store');
-// Login users
-Route.post('login', 'SessionsController.store');
+Route.post('registro', 'UsuariosController.store').prefix('api');
+// Session users
+Route.post('login', 'SessionsController.store').prefix('api');
+Route.get('logout', 'SessionsController.delete').prefix('api');
 // More users routes
-Route.get('usuarios', 'UsuariosController.index');
+// TODO APPLY AYTH MIDDLEWARE
+Route.group(() => {
+  Route.resource('usuarios', 'UsuariosController').apiOnly();
+}).prefix('api');
+/*   .middleware('auth'); */
 
 // Skills routes
-Route.resource('skills', 'SkillsController').apiOnly();
-Route.resource('candidatos', 'CandidatosController').apiOnly();
-Route.resource('experiencias', 'ExperienciasController').apiOnly();
+Route.group(() => {
+  Route.resource('skills', 'SkillsController').apiOnly();
+}).prefix('api');
+/* .middleware('auth'); */
+
+// Candidatos routes
+Route.group(() => {
+  Route.resource('candidatos', 'CandidatosController').apiOnly();
+})
+  .prefix('api')
+  .middleware('auth');
+// Experiencias routes
+Route.group(() => {
+  Route.resource('experiencias', 'ExperienciasController').apiOnly();
+}).prefix('api');
+/*   .middleware('auth'); */

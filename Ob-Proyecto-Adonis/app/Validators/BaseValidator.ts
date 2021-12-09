@@ -4,6 +4,5 @@ export default class BaseValidator {
     maxLength: '{{ field }} ha de tener como mínimo {{ options.maxLength }} carácteres',
     email: '{{ field }} ha de tenerer formato {{email}}',
     unique: '{{ field }} ya existe',
-    date: '{{ date }} ha de tener el formato {{ format }}',
   };
 }
