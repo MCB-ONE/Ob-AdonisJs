@@ -41,9 +41,11 @@ Route.group(() => {
 // Candidatos routes
 Route.group(() => {
   Route.resource('candidatos', 'CandidatosController').apiOnly();
-})
-  .prefix('api')
-  .middleware('auth');
+  // Candidatos filter routes
+  /* Route.get('canidatos/') */
+}).prefix('api');
+/* .middleware('auth'); */
+
 // Experiencias routes
 Route.group(() => {
   Route.resource('experiencias', 'ExperienciasController').apiOnly();

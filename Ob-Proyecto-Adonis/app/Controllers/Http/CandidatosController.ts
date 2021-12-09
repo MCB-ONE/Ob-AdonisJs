@@ -1,5 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 import Candidato from 'App/Models/Candidato';
+import CandidatoValidator from 'App/Validators/CandidatoValidator';
 
 export default class CandidatosController {
   public async index({ response }: HttpContextContract) {
@@ -11,9 +12,10 @@ export default class CandidatosController {
 
   public async store({ request, response }: HttpContextContract) {
     // TODO validar los nuevos datos antes de actualizar
-    const data = request.body();
-    const candidato = await Candidato.create(data);
+    const data = await request.validate(CandidatoValidator);
+    console.log(JSON.stringify(data));
 
+    const candidato = await Candidato.create(data);
     return response.json({ candidato });
   }
 
