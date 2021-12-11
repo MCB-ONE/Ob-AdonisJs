@@ -16,7 +16,7 @@ export default class Candidatos extends BaseSchema {
       table.string('pais').notNullable();
       table.boolean('remoto').notNullable().defaultTo(true);
       table.boolean('movilidad_geografica').notNullable().defaultTo(true);
-      table.boolean('activo').notNullable().defaultTo(true);
+      table.boolean('activo').notNullable().defaultTo(false);
       /*  - UserId(relación) */
       table
         .integer('usuario_id')

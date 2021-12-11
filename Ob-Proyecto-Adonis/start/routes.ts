@@ -1,30 +1,10 @@
-/*
-|--------------------------------------------------------------------------
-| Routes
-|--------------------------------------------------------------------------
-|
-| This file is dedicated for defining HTTP routes. A single file is enough
-| for majority of projects, however you can define routes in different
-| files and just make sure to import them inside this file. For example
-|
-| Define routes in following two files
-| ├── start/routes/cart.ts
-| ├── start/routes/customer.ts
-|
-| and then import them inside `start/routes.ts` as follows
-|
-| import './routes/cart'
-| import './routes/customer'
-|
-*/
-
 import Route from '@ioc:Adonis/Core/Route';
+// TODO APPLY AYTH MIDDLEWARE
+// Session routes
+Route.post('registro', 'SessionsController.register').prefix('api');
+Route.post('login', 'SessionsController.login').prefix('api');
+Route.get('logout', 'SessionsController.logout').prefix('api'); /*   .middleware('auth'); */
 
-// Register users
-Route.post('registro', 'UsuariosController.store').prefix('api');
-// Session users
-Route.post('login', 'SessionsController.store').prefix('api');
-Route.get('logout', 'SessionsController.delete').prefix('api');
 // More users routes
 // TODO APPLY AYTH MIDDLEWARE
 Route.group(() => {
@@ -33,21 +13,33 @@ Route.group(() => {
 /*   .middleware('auth'); */
 
 // Skills routes
+// TODO APPLY AYTH MIDDLEWARE
 Route.group(() => {
   Route.resource('skills', 'SkillsController').apiOnly();
 }).prefix('api');
 /* .middleware('auth'); */
 
-// Candidatos routes
-Route.group(() => {
-  Route.resource('candidatos', 'CandidatosController').apiOnly();
-  // Candidatos filter routes
-  /* Route.get('canidatos/') */
-}).prefix('api');
-/* .middleware('auth'); */
-
 // Experiencias routes
+// TODO APPLY AYTH MIDDLEWARE
 Route.group(() => {
   Route.resource('experiencias', 'ExperienciasController').apiOnly();
 }).prefix('api');
 /*   .middleware('auth'); */
+
+// Candidatos routes
+// TODO APPLY AYTH MIDDLEWARE
+Route.group(() => {
+  Route.group(() => {
+    Route.get('/', 'CandidatosController.index');
+    Route.get('/experiencias', 'CandidatosController.candidatosExperiencias');
+    Route.get('/filtered/', 'CandidatosController.filtered');
+    Route.post('/', 'CandidatosController.store');
+    Route.get('/:id', 'CandidatosController.show').where('id', {
+      match: /^[0-9]+$/,
+      cast: (id) => Number(id),
+    });
+    Route.patch('/:id', 'CandidatosController.update');
+    Route.delete('/:id', 'CandidatosController.destroy');
+  }).prefix('/candidatos');
+}).prefix('/api');
+/* .middleware('auth'); */
